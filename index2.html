@@ -1,0 +1,545 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<!-- saved from url=(0078)https://sp.srmist.edu.in/srmiststudentportal/students/template/HRDSystem.jsp#! -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SRM Student Portal</title>
+    <link href="mainstyle.css" rel="stylesheet">
+    <link href="all.css" rel="stylesheet" type="text/css">
+    <link href="customstyle.css" rel="stylesheet">
+    <link href="https://sp.srmist.edu.in/srmiststudentportal/resources/Image/college_icon.jpeg" type="Image/x-icon"
+        rel="icon">
+    <!-- <script src="jquery.min.js"></script> -->
+    <script>
+        var appURL = "";
+        var imageName;
+        var d;
+        $(function () {
+            (function (global) {
+
+                if (typeof (global) === "undefined") {
+                    throw new Error("window is undefined");
+                }
+
+                var _hash = "!";
+                var noBackPlease = function () {
+                    global.location.href += "#";
+                    // making sure we have the fruit available for juice....
+                    // 50 milliseconds for just once do not cost much (^__^)
+                    global.setTimeout(function () {
+                        global.location.href += "!";
+                    }, 50);
+                };
+                // Earlier we had setInerval here....
+                global.onhashchange = function () {
+                    if (global.location.hash !== _hash) {
+                        global.location.hash = _hash;
+                    }
+                };
+                global.onload = function () {
+
+                    noBackPlease();
+                    // disables backspace on page except on input fields and textarea..
+                    document.body.onkeydown = function (e) {
+                        var elm = e.target.nodeName.toLowerCase();
+                        if (e.which === 8 && (elm !== 'input' && elm !== 'textarea')) {
+                            e.preventDefault();
+                        }
+                        // stopping event bubbling up the DOM tree..
+                        e.stopPropagation();
+                    };
+                };
+            })(window);
+            $("#hidchkHostelOpen").val('');
+            funShow(11, '../../students/report/studentHostelDetails.jsp');
+        });
+
+        function funSetFormId(arg) {
+            if (arg > 100) {
+                $('#logoutModal').modal('show');
+            } else {
+                $("#hdnFormId").val(arg);
+                $('#userHomePage').attr("action", "../../students/template/HRDSystem.jsp");
+                $('#userHomePage').submit();
+            }
+        }
+
+        function funShow(arg, argURL) {
+            appParameter = [];
+            appParameter.push({ name: "iden", value: arg });
+            appParameter.push({ name: "filter", value: "" });
+            $(".navmenu").removeClass("active");
+            $("#listId" + arg).addClass("active");
+            if (arg < 100) {
+                $("#divMainDetails").html("<img src='../../resources/Image/wait.gif' alt='Loading... Please Wait!'>");
+                $("#divMainDetails").show();
+                $.post(argURL, appParameter, function (data) {
+                    $("#divMainDetails").html(data);
+                    $("#divMainDetails").show();
+                }, "html").fail(function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                })
+            } else {
+                $('#logoutModal').modal('show');
+            }
+        }
+    </script>
+</head>
+
+<body class="nav-fixed sidebar-toggled">
+    <form id="userHomePage" name="userHomePage" method="post">
+        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white"
+            id="sidenavAccordion">
+            <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle"><i
+                    class="fa fa-bars"></i></button>
+            <a class="navbar-brand"
+                href="https://sp.srmist.edu.in/srmiststudentportal/students/loginManager/UserHomePage.jsp">
+                <img src="srmist.png" alt="SRM Logo">
+                <br>
+                <font style="font-size: 9pt;">Student Portal</font>
+            </a>
+            <span class="text-custom d-none d-sm-block"><b>Faculty of Engineering and Technology,
+                    Kattankulathur</b></span>
+
+            <ul class="navbar-nav align-items-center ml-auto text-center">
+
+                <a style="cursor:pointer;">
+                    <span class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                        <div class="dropdown-item-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        Logout
+                    </span>
+                </a>
+            </ul>
+        </nav>
+
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sidenav shadow-right sidenav-light">
+                    <div class="sidenav-menu">
+                        <div class="nav accordion" id="accordionSidenav">
+
+                            <!-- Sidenav Heading -->
+                            <!--                                <div class="sidenav-menu-heading">Menus</div>-->
+
+
+                            <a id="listId1" class="nav-link navmenu" style="cursor:pointer;" href="index.htm"
+                                onclick="funSetFormId(1)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+
+                            <a id="listId69" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(69)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-newspaper"></i></div>
+                                Fee Payment
+                            </a>
+
+                            <a id="listId17" class="nav-link navmenu" style="cursor:pointer;" href="index1.htm"
+                                onclick="funSetFormId(17)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-user"></i></div>
+                                Personal Details
+                            </a>
+
+                            <a id="listId29" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(29)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-newspaper"></i></div>
+                                Scholarship Renewal Process
+                            </a>
+
+                            <a id="listId7" class="nav-link navmenu" style="cursor:pointer;" onclick="funSetFormId(7)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-book"></i></div>
+                                Course List
+                            </a>
+
+                            <a id="listId8" class="nav-link navmenu" style="cursor:pointer;" onclick="funSetFormId(8)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-newspaper"></i></div>
+                                Grade / Mark &amp; Credit
+                            </a>
+
+                            <a id="listId24" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(24)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-newspaper"></i></div>
+                                Exam Provisional Results
+                            </a>
+
+                            <a id="listId27" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(27)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-newspaper"></i></div>
+                                Exam Revaluation Results
+                            </a>
+
+                            <a id="listId9" class="nav-link navmenu" style="cursor:pointer;" onclick="funSetFormId(9)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-calculator"></i></div>
+                                Attendance Details
+                            </a>
+
+                            <a id="listId10" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(10)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-clock"></i></div>
+                                Timetable
+                            </a>
+
+                            <a id="listId13" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(13)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-server"></i></div>
+                                Internal Mark Details
+                            </a>
+
+                            <a id="listId14" class="nav-link navmenu" style="cursor:pointer;" href="index2.htm"
+                                onclick="funSetFormId(14)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-bed"></i></div>
+                                Hostel Booking
+                            </a>
+
+                            <a id="listId11" class="nav-link navmenu active" style="cursor:pointer;"
+                                onclick="funSetFormId(11)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-bed"></i></div>
+                                Hostel Details
+                            </a>
+
+                            <a id="listId12" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(12)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-bus"></i></div>
+                                Transport Details
+                            </a>
+
+                            <a id="listId3" class="nav-link navmenu" style="cursor:pointer;" onclick="funSetFormId(3)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-receipt"></i></div>
+                                Finance Details
+                            </a>
+
+                            <a id="listId5" class="nav-link navmenu" style="cursor:pointer;" onclick="funSetFormId(5)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-server"></i></div>
+                                Notice Board
+                            </a>
+
+                            <a id="listId21" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(21)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-book"></i></div>
+                                ABC Entry Request
+                            </a>
+
+                            <a id="listId22" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(22)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-solid fa-bus"></i></div>
+                                Transport Booking
+                            </a>
+
+                            <a id="listId42" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(42)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-newspaper"></i></div>
+                                Exam HallTicket
+                            </a>
+
+                            <a id="listId46" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(46)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-newspaper"></i></div>
+                                Photo for Degree certificate
+                            </a>
+
+                            <a id="listId44" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(44)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-envelope"></i></div>
+                                Summer Term / Compensatory Registration
+                            </a>
+
+                            <a id="listId49" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(49)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-newspaper"></i></div>
+                                Scribe Request
+                            </a>
+
+                            <a id="listId54" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(54)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-newspaper"></i></div>
+                                Review/Revaluation/Retotaling Registration
+                            </a>
+
+                            <a id="listId57" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(57)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-newspaper"></i></div>
+                                Name Change - Gazette
+                            </a>
+
+                            <a id="listId74" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(74)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-file"></i></div>
+                                Community Certificate
+                            </a>
+
+                            <a id="listId83" class="nav-link navmenu" style="cursor:pointer;"
+                                onclick="funSetFormId(83)">
+                                <div class="nav-link-icon"><i class="fas fa-fw fa-newspaper"></i></div>
+                                Placement Insight Dashboard
+                            </a>
+
+                            <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
+                                <div class="nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Sidenav Footer-->
+                    <div class="sidenav-footer">
+                        <div class="sidenav-footer-content">
+                            <div class="sidenav-footer-subtitle">RA2311056010173</div>
+                            <div class="sidenav-footer-subtitle">PUNIT JOSHI</div>
+                            <div class="sidenav-footer-title">Thu 07-Mar-2024 18:53:43</div>
+                        </div>
+                        <input type="hidden" style="color:white;" id="hidchkHostelOpen" name="hidchkHostelOpen"
+                            size="10" value="">
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div id="divMainDetails" style="">
+
+
+
+
+
+
+
+
+
+
+
+                        <script>
+                            var url = '../../students/transaction/HostelCancellationInner.jsp';
+
+                            function funTabActive(arg) {
+                                $(".tabhead").removeClass("active");
+                                $(".tabhead").removeClass("ms-0");
+                                $(".clstabcontent").addClass("d-none");
+                                $("#tab" + arg).addClass("active ms-0");
+                                $("#tabcontent" + arg).removeClass("d-none");
+                            }
+                            function verification(transid, pgtype, officeid) {
+                                $("#historypgtype").val(pgtype);
+                                $("#historysrmtransid").val(transid);
+                                $("#hdnOfficeid").val(officeid);
+                                document.getElementById("hostelreconcile").submit();
+
+                            }
+
+                            function funCancelRoom(hostelname, roomno) {
+                                $("#modalBodyAlert").html("Willing to cancel your booked hostel - " + hostelname + ", Room No -" + roomno);
+                                $("#alertModal").modal("show");
+                            }
+
+                            function funAjaxCancelRoom() {
+                                $("#alertModal").modal("hide");
+                                $("#cancelbutton").hide();
+
+                                var AJAXparameter = [];
+                                AJAXparameter.push({ name: "iden", value: "1" });
+                                AJAXparameter.push({ name: "hostelid", value: $("#hdnhostelid").val() });
+                                AJAXparameter.push({ name: "roomid", value: $("#hdnroomid").val() });
+
+                                AJAXparameter.push({ name: "bookingid", value: $("#hdnbookingid").val() });
+                                $("#divHostelCancel").html("<img src='../../resources/Image/wait.gif' alt='Loading... Please wait..'>");
+                                $.post(url, AJAXparameter, function (data) {
+                                    if (data.resultstatus == 1) {
+                                        $("#divHostelCancel").html("<div class='alert alert-success alert-icon border-top-lg mb-1 mt-1' role='alert' id='errorAlert'><div class='alert-icon-content' id='errorAlertcontent'>" + data.result + "</div></div>");
+                                    } else {
+                                        $("#divHostelCancel").html("<div class='alert alert-danger alert-icon border-top-lg mb-1 mt-1' role='alert' id='errorAlert'><div class='alert-icon-content' id='errorAlertcontent'>" + data.result + "</div></div>");
+                                    }
+                                }, "json").error(function (jqXHR, textStatus, errorThrown) {
+                                    alert("errpr" + textStatus + "--" + jqXHR.responseText + " " + errorThrown);
+                                });
+                            }
+
+
+                            function print1(studentid, srmtrans) {
+                                myWindow = window.open("../../students/transaction/HostelPaymentReceipt.jsp?srmTransid=" + srmtrans, this.target);
+                                myWindow.focus()
+                            }
+
+                        </script>
+                        <!-- Main page content-->
+                        <nav class="nav nav-borders">
+                            <a class="nav-link tabhead active ms-0 font-weight-bold font-weight-700" id="tab1"
+                                onclick="funTabActive(1)">Payment Transaction Log</a>
+                            <a class="nav-link tabhead font-weight-bold font-weight-700" id="tab2"
+                                onclick="funTabActive(2)">Hostel Booking Details</a>
+                            <a class="nav-link tabhead font-weight-bold font-weight-700" id="tab3"
+                                onclick="funTabActive(3)">Hostel Cancellation</a>
+
+                        </nav>
+                        <hr class="mt-0 mb-4">
+
+
+                        <div class="card mb-4 clstabcontent " id="tabcontent1">
+                            <div class="container mt-4">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-custom text-white">Hostel Details</div>
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive table-billing-history">
+                                            <form name="hostelreconcile" id="hostelreconcile"
+                                                action="https://sp.srmist.edu.in/srmiststudentportal/HostelReconcile"
+                                                method="POST" autocomplete="off">
+                                                <table class="table mb-0">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th width="12%" scope="col">Verify</th>
+                                                            <th width="12%" scope="col">Student Id</th>
+                                                            <th width="12%" scope="col">SRM Transaction Id</th>
+                                                            <th width="12%" scope="col">Bank Transaction Id</th>
+                                                            <th width="12%" scope="col">Total Amount</th>
+                                                            <th width="30%" scope="col">Payment Status</th>
+                                                            <th width="12%" scope="col">Transaction Date</th>
+                                                            <th width="12%" scope="col">Payment Gateway</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+
+                                                        <tr>
+                                                            <td colspan="4" align="center">No Record found.</td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <input type="hidden" value="0" id="historysrmtransid"
+                                                    name="historysrmtransid">
+                                                <input type="hidden" value="0" id="historypgtype" name="historypgtype">
+                                                <input type="hidden" value="0" id="srmtransid" name="srmtransid">
+                                                <input type="hidden" value="0" id="hdnOfficeid" name="hdnOfficeid">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="card mb-3 clstabcontent d-none" id="tabcontent2">
+                            <div class="container mt-4">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-custom text-white">Hostel Details</div>
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive table-billing-history">
+                                            <table class="table mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="40%" scope="col">Hostel Name</th>
+                                                        <th width="20%" scope="col">Room No.</th>
+                                                        <th width="20%" scope="col">Allocated Date</th>
+                                                        <th width="20%" scope="col">Academic Year</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+                                                    <tr>
+                                                        <td colspan="4" align="center">No Record found.</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4 clstabcontent d-none" id="tabcontent3">
+                            <div class="container mt-4">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-custom text-white">Hostel Cancellation</div>
+
+                                    <div class="card-body">
+
+                                        <div class="row mt-5">
+                                            <!--<div class="row">-->
+
+
+
+                                            <div class="col-md-12" align="center">
+                                                <h2><b>Please contact your hostel office for canceling the room</b></h2>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal fade" id="alertModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-custom text-white">
+                                            <h5 class="modal-title text-white" id="exampleModalLabel">Hostel Booking
+                                            </h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span class="text-white" aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" id="modalBodyAlert">
+                                            Are you sure to cancel the hostel room?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-custom lift" type="button"
+                                                onclick="funAjaxCancelRoom()">Confirm</button>
+                                            <!--<button class="btn btn-dark lift" type="button" data-dismiss="modal">Okay</button>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </main>
+                <footer class="footer mt-auto footer-light">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 small"></div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <input type="hidden" id="hdnFormStatus" name="hdnFormStatus" value="0">
+        <input type="hidden" id="hdnFormId" name="hdnFormId" value="1">
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span class="text-white" aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure to logout?
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-dark lift" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-custom lift"
+                            href="https://sp.srmist.edu.in/srmiststudentportal/students/template/Logout.jsp">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="hdnFilename" name="hdnFilename" value="">
+    </form>
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a972b744c3.js" crossorigin="anonymous"></script>
+    <script src="jquery.easing.min.js"></script>
+    <script src="main.js"></script>
+
+
+
+
+    <div id="naptha_container0932014_0707"></div>
+</body>
+
+</html>
