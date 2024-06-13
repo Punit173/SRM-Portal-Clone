@@ -94,8 +94,7 @@
     <form id="userHomePage" name="userHomePage" method="post">
         <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white"
             id="sidenavAccordion">
-            <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle"><i
-                    class="fa fa-bars"></i></button>
+            <p class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" onclick="name ? show() : hide()">
             <a class="navbar-brand"
                 href="https://sp.srmist.edu.in/srmiststudentportal/students/loginManager/UserHomePage.jsp">
                 <img src="srmist.png" alt="SRM Logo">
@@ -126,7 +125,7 @@
                             <!--                                <div class="sidenav-menu-heading">Menus</div>-->
 
 
-                            <a id="listId1" class="nav-link navmenu" style="cursor:pointer;" href="index.htm"
+                            <a id="listId1" class="nav-link navmenu" style="cursor:pointer;" href="index.html"
                                 onclick="funSetFormId(1)">
                                 <div class="nav-link-icon"><i class="fas fa-fw fa-tachometer-alt"></i></div>
                                 Dashboard
@@ -138,7 +137,7 @@
                                 Fee Payment
                             </a>
 
-                            <a id="listId17" class="nav-link navmenu" style="cursor:pointer;" href="index1.htm"
+                            <a id="listId17" class="nav-link navmenu" style="cursor:pointer;" href="index1.html"
                                 onclick="funSetFormId(17)">
                                 <div class="nav-link-icon"><i class="fas fa-fw fa-user"></i></div>
                                 Personal Details
@@ -189,7 +188,7 @@
                                 Internal Mark Details
                             </a>
 
-                            <a id="listId14" class="nav-link navmenu" style="cursor:pointer;" href="index2.htm"
+                            <a id="listId14" class="nav-link navmenu" style="cursor:pointer;" href="index2.html"
                                 onclick="funSetFormId(14)">
                                 <div class="nav-link-icon"><i class="fas fa-fw fa-bed"></i></div>
                                 Hostel Booking
@@ -311,6 +310,19 @@
 
                         <script>
                             var url = '../../students/transaction/HostelCancellationInner.jsp';
+                            var menu = document.getElementById("layoutSidenav_nav");
+                            let name = false;
+                            menu.style.display = "block";
+                            menu.style.marginLeft = "62vw";
+                            function show() {
+                                menu.style.display = "none";
+                                menu.style.marginLeft = "62vw";
+                                name = false;
+                            }
+                            function hide() {
+                                menu.style.display = "flex";
+                                name = true;
+                            }
 
                             function funTabActive(arg) {
                                 $(".tabhead").removeClass("active");
