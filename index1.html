@@ -94,26 +94,26 @@
     <form id="userHomePage" name="userHomePage" method="post">
         <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white"
             id="sidenavAccordion">
-            <<p class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle"
-                onclick="name ? show() : hide()">
-                <a class="navbar-brand"
-                    href="https://sp.srmist.edu.in/srmiststudentportal/students/loginManager/UserHomePage.jsp">
-                    <img src="srmist.png" alt="SRM Logo">
-                    <br>
-                    <font style="font-size: 9pt;">Student Portal</font>
+            <p class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" onclick="name ? show() : hide()"
+                id="sidebarToggle"><i class="fa fa-bars"></i></p>
+            <a class="navbar-brand"
+                href="https://sp.srmist.edu.in/srmiststudentportal/students/loginManager/UserHomePage.jsp">
+                <img src="srmist.png" alt="SRM Logo">
+                <br>
+                <font style="font-size: 9pt;">Student Portal</font>
+            </a>
+            <span class="text-custom d-none d-sm-block"><b>Faculty of Engineering and Technology,
+                    Kattankulathur</b></span>
+
+            <ul class="navbar-nav align-items-center ml-auto text-center">
+
+                <a style="cursor:pointer;">
+                    <span class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                        <div class="dropdown-item-icon"><i class="fas fa-sign-out-alt"></i></div>
+                        Logout
+                    </span>
                 </a>
-                <span class="text-custom d-none d-sm-block"><b>Faculty of Engineering and Technology,
-                        Kattankulathur</b></span>
-
-                <ul class="navbar-nav align-items-center ml-auto text-center">
-
-                    <a style="cursor:pointer;">
-                        <span class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
-                            <div class="dropdown-item-icon"><i class="fas fa-sign-out-alt"></i></div>
-                            Logout
-                        </span>
-                    </a>
-                </ul>
+            </ul>
         </nav>
 
         <div id="layoutSidenav">
